@@ -14,6 +14,8 @@ const routes: Routes = [
     path : 'events/:vehicleId',
     loadChildren: () => import('./insurance-events/insurance-events.module').then(m => m.InsuranceEventsModule)
   },
+  { path: '', redirectTo: 'insurances', pathMatch: 'full' },
+
 ];
 
 @NgModule({
