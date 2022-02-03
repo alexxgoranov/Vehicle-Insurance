@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+@import '~ngx-toastr/toastr';
+
+
+
+.w-100 {
+ width: 100%;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.no-border-card{
+    border:0;
+}
+
+.min-card-height {
+    min-height: calc(100vh - 270px)
+}
+
+// input.ng-invalid {
+//     border: red 1px solid;
+// }
+.ng-touched.ng-invalid {
+    border-color: #ff586b;
+}
