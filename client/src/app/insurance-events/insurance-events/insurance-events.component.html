@@ -1,0 +1,114 @@
+<div class="row mb-5">
+  <div class="col-12 col-md-5">
+    <div class="form-group row">
+      <label for="identify-number" class="col-12 col-form-label text-nowrap">
+        <b> Car registration number: </b>
+      </label>
+      <div class="col-12 col-md-12 col-lg-6">
+        <input  type="text" 
+                class="form-control" 
+                [disabled]="loading" 
+                [(ngModel)]="searchVehicleRegNum"
+                id="identify-number" 
+                placeholder="Enter data..." />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-sm-4">
+    <h5 class="card-title">Insured vehicle numbers:</h5>
+    <div class="card b-none min-card-height">
+      <div class="row">
+        <div class="col">
+          <ng-container *ngIf="insuredVehiclesRegNumbers | searchFilter:searchVehicleRegNum as filterVehicles">
+            <div *ngFor="let vehicleNumber of filterVehicles" class="row mb-1">
+              <div class="col">
+                <button type="button" 
+                        (click)="selectVehicleNumber(vehicleNumber)"
+                        class="btn btn-light button-vehicle w-100"
+                        [ngClass]="{'selected': selectedVehicle?.vehicleRegNumber === vehicleNumber.vehicleRegNumber}">
+                            <div class="row align-items-center">
+                              <div class="col flex-grow-0">
+                                <i class="fas fa-user"></i>
+                              </div>
+                              <div class="col flex-grow-1">
+                                <b> Vehicle: {{vehicleNumber.vehicleRegNumber}} </b>
+                                <hr />
+                                <b> Owner of vehicle: </b> {{vehicleNumber.ownerName}}
+                              </div>
+                            </div>
+                </button>
+              </div>
+            </div>
+            <ng-container *ngIf="filterVehicles.length === 0">
+              <h3 class="text-center mt-5"> No data!!</h3>
+            </ng-container>
+          </ng-container>
+
+        </div>
+      </div>
+      <app-card-loader [show]="loading"></app-card-loader>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-8">
+    <div class="row mt-4 mb-2">
+      <div class="col d-flex justify-content-sm-end">
+        <div>
+          <button type="button" class="btn btn-light me-1" [disabled]="!selectedVehicle"
+            (click)="sortType = 'ascending'" [ngClass]="{'selected': sortType == 'ascending'}">
+            <i class="fas fa-sort-amount-down">
+            </i>
+          </button>
+          <button type="button" class="btn btn-light me-1" [disabled]="!selectedVehicle"
+            (click)="sortType = 'descending'" [ngClass]="{'selected': sortType == 'descending'}">
+            <i class="fas fa-sort-amount-down-alt"></i>
+          </button>
+          <button type="button" class="btn btn-info" [disabled]="!selectedVehicle" (click)="openModal()">
+            Add event
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="row">
+          <ng-container
+            *ngIf="insuranceEvents | searchFilter: selectedVehicle?.vehicleRegNumber | sortByDate:sortType :'eventDate' as filteredData">
+            <ng-container *ngIf="!!selectedVehicle && filteredData.length > 0">
+              <div *ngFor="let eventInsurance of filteredData; let i=index" class="col-12 col-md-6">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h4 class="card-title">Insurance event</h4>
+                    <p class="card-text"><b> Date: </b> {{eventInsurance.eventDate | date}}</p>
+                    <p class="card-text"><b> Driver: </b>{{eventInsurance.driver}}</p>
+
+                    <p class="card-text">
+                      <b> Info: </b>
+                      <small class="text-muted">{{eventInsurance.eventInfo}}
+                      </small>
+                    </p>
+                  </div>
+                  <img [src]="eventInsurance.image" class="card-img-bottom" width="300" height="400"
+                    [alt]="eventInsurance.driver">
+                  <app-card-loader [show]="loading"></app-card-loader>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!!selectedVehicle && filteredData.length === 0">
+              <h3> There are no events for that vehicle!</h3>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <ng-container *ngIf="!selectedVehicle">
+          <h3 class="text-danger"> No vehicle registration number selected!</h3>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

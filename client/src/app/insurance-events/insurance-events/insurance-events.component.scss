@@ -1,0 +1,15 @@
+.selected {
+  background: #1c2938 !important;
+  color: white;
+}
+
+.button-vehicle {
+  &:hover {
+    background: #1c2938 !important;
+    color: #fff;
+  }
+
+  & {
+    border: 1px solid #1c2938 !important;
+  }
+}

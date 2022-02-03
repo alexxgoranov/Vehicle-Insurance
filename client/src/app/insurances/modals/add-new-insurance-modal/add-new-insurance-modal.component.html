@@ -1,0 +1,159 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add new insurance</h4>
+  <button type="button" class="btn" (click)="closeModal()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="registrationNumber">Registration number:</label>
+          <input type="text" class="form-control" id="registrationNumber" formControlName="vehicleRegNumber"
+            placeholder="Enter data...">
+            <div *ngIf="(vehicleRegNumber.touched || vehicleRegNumber.dirty) && vehicleRegNumber.invalid" class="text-danger">
+            <!-- <div *ngIf="!!vehicleRegNumber.errors && isValidFormSubmitted" class="text-danger"> -->
+              <div *ngIf="vehicleRegNumber.errors.required">
+                <b> Registration number is required! </b>
+              </div>
+              <div *ngIf="vehicleRegNumber.value.length > 0 && vehicleRegNumber.errors.pattern">
+                <b>Registration number is not valid! </b>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="ownerName">Owner name:</label>
+          <input type="text" class="form-control" id="ownerName" formControlName="ownerName"
+            placeholder="Enter data...">
+            <div *ngIf="(ownerName.touched || ownerName.dirty) && ownerName.invalid" class="text-danger">
+            <div *ngIf="ownerName?.errors.required">
+              <b> Owner name is required! </b>
+            </div>
+            <div *ngIf="ownerName.value.length > 0 && ownerName.errors.pattern">
+              <b>Owner name is not valid! </b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="personalIdentifier">PersonalIdentifier:</label>
+          <input type="text" class="form-control" id="personalIdentifier" formControlName="personalIdentifier"
+            placeholder="Enter data...">
+            <div *ngIf="(personalIdentifier.touched || personalIdentifier.dirty) && personalIdentifier.invalid" class="text-danger">
+              <div *ngIf="personalIdentifier.errors.required">
+                <b> Personalidentifier is required! </b>
+              </div>
+              <div *ngIf="personalIdentifier.value.length > 0 && personalIdentifier?.invalid">
+                <b>Personalidentifier is not valid! </b>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="startDate">Start Date:</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="Select from datepicker" name="dp" formControlName="startDate" ngbDatepicker
+              #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <i class="fas fa-calendar-alt"></i>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="(startDate.touched || startDate.dirty) && startDate.invalid" class="text-danger">
+            <div *ngIf="startDate.errors.required">
+              <b> StartDate is required! </b>
+            </div>
+            <div *ngIf="startDate.value.length > 0 && startDate.invalid">
+              <b>StartDate is not valid! </b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <label class="col-form-label pt-0"> Number of payments:</label>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="paymentsCount" name="paymentsCount" id="radioPayment1" value="1">
+            <label class="form-check-label" for="radioPayment1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" formControlName="paymentsCount" name="paymentsCount" id="radioPayment2" value="2">
+            <label class="form-check-label" for="radioPayment2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio"  formControlName="paymentsCount" name="paymentsCount" id="radioPayment3" value="4">
+            <label class="form-check-label" for="radioPayment3">4</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="yaerOfCreation">Vehicle year of manufacture :</label>
+          <input type="number" class="form-control" id="yaerOfCreation" formControlName="yearOfManufacture"
+            placeholder="Enter a year...">
+            <div *ngIf="(yearOfManufacture.touched || yearOfManufacture.dirty) && yearOfManufacture.invalid" class="text-danger">
+              <div *ngIf="yearOfManufacture.errors.required">
+                <b> Vehicle year of manufacture is required! </b>
+              </div>
+              <div *ngIf="yearOfManufacture.invalid">
+                <b>Personalidentifier is not valid! </b>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="yaerOfCreation">Insurance price:</label>
+          <input type="number" class="form-control" id="insurancePrice" formControlName="insurancePrice"
+            placeholder="Enter a insurancePrice..">
+            <div *ngIf="(insurancePrice.touched || insurancePrice.dirty) &&  insurancePrice.invalid" class="text-danger">
+              <div *ngIf="insurancePrice.errors.required">
+                <b> Insurance price is required! </b>
+              </div>
+              <div *ngIf="insurancePrice.invalid">
+                <b>Personalidentifier is not valid! </b>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-group">
+          <label for="yaerOfCreation">Due amount:</label>
+          <input type="number" class="form-control" id="duePrice" formControlName="duePrice" placeholder="Enter...">
+          <div *ngIf="(duePrice.touched || duePrice.dirty) && duePrice.invalid" class="text-danger">
+            <div *ngIf="duePrice.errors.required">
+              <b> Due amount is required! </b>
+            </div>
+            <div *ngIf="duePrice.invalid">
+              <b>Personalidentifier is not valid! </b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-success" [disabled]="loading || insuranceForm.invalid " (click)="onSubmit()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

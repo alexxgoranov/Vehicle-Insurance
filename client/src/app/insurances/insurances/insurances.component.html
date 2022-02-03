@@ -1,0 +1,162 @@
+<div class="row align-items-center mb-5">
+  <div class="col-8 col-md-5 col-lg-3">
+    <div class="form-group row mb-2">
+      <label for="identify-number" class="col-12 col-form-labeltext-nowrap"> <b> Car registration number: </b></label>
+      <div class="col-12">
+        <input type="text" class="form-control" [disabled]="loading"  [(ngModel)]="carRegistrationNumber" id="identify-number"
+          placeholder="Enter...">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm mt-3">
+    <button type="button" class="btn btn-light me-1" [disabled]="loading" (click)="sortType='ascending'" [ngClass]="{'selected': sortType == 'ascending'}">
+      <i class="fas fa-sort-amount-down-alt"></i>
+    </button>
+    <button type="button" class="btn btn-light" [disabled]="loading" (click)="sortType='descending'" [ngClass]="{'selected': sortType == 'descending'}">
+      <i class="fas fa-sort-amount-down">
+      </i>
+    </button>
+  </div>
+
+  <div class="col-12 col-md">
+    <button type="button" class="btn btn-info float-end mt-3" (click)="openModal()">Add insurance</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card no-border-card min-card-height">
+      <div class="row" *ngIf="insurances.length > 0">
+        <div
+          *ngFor="let insurance of insurances | searchFilter: carRegistrationNumber | sortByDate:sortType :'startDate'"
+          class="col-12 col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Insurance for vehicle
+                <span class="text-danger">
+                  <b> {{insurance.vehicleRegNumber}} </b>
+                </span>
+              </h4>
+              <div class="row mb-1">
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Name of owner: </b>
+                      </label>
+                      <p class="d-inline"> {{insurance.ownerName}}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Owner personalIdentifier: </b>
+                      </label>
+                      <p class="d-inline"> {{insurance.personalIdentifier}}</p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b>Start Date:</b>
+                      </label>
+                      <p class="d-inline">
+                        {{ insurance.startDate | date}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Number of payements:</b>
+                      </label>
+                      <p class="d-inline">
+                        {{insurance.paymentsCount}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Year of manufacture:</b>
+                      </label>
+                      <p class="d-inline">
+                        {{insurance.yearOfManufacture}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Insurance price:</b>
+                      </label>
+                      <p class="d-inline">
+                        {{insurance.insurancePrice}}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col">
+                      <label class="as-lable">
+                        <b> Due price:</b>
+                      </label>
+                      <p class="d-inline">
+                        {{insurance.duePrice}}
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col">
+                  <div class="row mb-1">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <h5 class="as-lable ml-5">
+                            <b> Payments:</b>
+                          </h5>
+                        </div>
+                      </div>
+
+                      <div *ngFor="let payment of insurance.payments; let i = index" class="row">
+                        <div class="col-4">
+                          <p> Payment - <b> {{payment.paymentNumber}} </b> </p>
+                        </div>
+                        <div class="col-8">
+                          <ng-container *ngIf="payment.status === 'paid'">
+                            <p class="text-danger">
+                              <b> Paid on: {{payment.date | date}} </b>
+                            </p>
+                          </ng-container>
+                          <ng-container *ngIf="payment.status === 'unpaid'">
+                            <button
+                              [disabled]="!!insurance.payments[i-1] && insurance.payments[i-1].status === 'unpaid'"
+                              type="button" class="btn btn-success" [disabled]="loading"
+                              (click)="payInsurance(insurance,payment)">
+                              Pay
+                            </button>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <a [routerLink]="['/events', insurance.vehicleRegNumber]" class="btn btn-primary">
+                    Insurances events</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <app-card-loader [show]="loading"></app-card-loader>
+      <div class="d-flex justify-content-center min-card-height align-items-center" *ngIf="insurances.length == 0">
+        <h3> There aren't any data! </h3>
+      </div>
+    </div>
+  </div>
+</div>

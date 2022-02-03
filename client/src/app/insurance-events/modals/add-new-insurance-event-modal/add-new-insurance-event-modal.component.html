@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add new event</h4>
+    <button type="button" class="btn" (click)="closeModal()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="insuranceEventForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="startDate">Event Date:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="Select from datepicker" name="dp" formControlName="eventDate" ngbDatepicker
+                #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <i class="fas fa-calendar-alt"></i>
+                </button>    
+              </div>
+            </div>
+            <div *ngIf="(eventDate.touched || eventDate.dirty) && eventDate.invalid" class="text-danger">
+              <div *ngIf="eventDate.errors['required']">
+                <b>Event Date is required! </b>
+              </div>
+              <div *ngIf="eventDate?.value.length > 0 && eventDate?.invalid">
+                <b>Event Date is not valid! </b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="ownerName">Driver:</label>
+            <input type="text" class="form-control" id="driverName" formControlName="driver"
+              placeholder="Enter data...">
+              <div *ngIf="(driver.touched || driver.dirty) && driver.invalid" class="text-danger">
+                <div *ngIf="driver.errors['required']">
+                  <b> Driver is required! </b>
+                </div>
+                <div *ngIf="driver.value.length > 0 && driver.invalid">
+                  <b> Driver is not valid! </b>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="form-group">
+            <label for="eventInfo" class="form-label">Event info:</label>
+            <textarea class="form-control" id="eventInfo" rows="3" formControlName="eventInfo"></textarea>
+          </div>
+        </div>
+      </div>  
+      <div class="row mt-3">
+        <div class="col">
+          <div class="form-group mb-3">
+            <label>Select Image File:</label>
+            <input type="file" (change)="onFileSelect($event)" name="image">
+            <div *ngIf="image.invalid" class="text-danger">
+              <div *ngIf="image.errors['required']">
+                <b> Image is required! </b>
+              </div>
+              <div *ngIf="image.errors['incorrectFileFormat']">
+                <b> File format is not valid! </b>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="imageData">
+            <img [src]="imageData" width="400" height="300"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" [disabled]="loading || insuranceEventForm.invalid " (click)="onSubmit()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Close</button>
+  </div>
