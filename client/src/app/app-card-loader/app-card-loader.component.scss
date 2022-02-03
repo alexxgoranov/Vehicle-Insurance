@@ -1,0 +1,33 @@
+
+  .wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    background: darken($color: #000000, $amount: 0);
+    opacity: 0.5;
+  }
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #243545;
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    // -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  

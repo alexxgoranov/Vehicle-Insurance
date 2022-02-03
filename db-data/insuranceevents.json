@@ -1,0 +1,127 @@
+[{
+  "_id": {
+    "$oid": "61fa8ed240b894730679e978"
+  },
+  "insurance": {
+    "$oid": "61fa8cb2defafd0648132f06"
+  },
+  "vehicleRegNumber": "СО0000МА",
+  "eventDate": {
+    "$date": "2022-02-16T22:00:00Z"
+  },
+  "driver": "Test driver",
+  "eventInfo": "Test info",
+  "image": "http://localhost:3200/images/carImage.jpg",
+  "createdAt": {
+    "$date": "2022-02-02T14:01:54.527Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T14:01:54.527Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fa8fe040b894730679e981"
+  },
+  "insurance": {
+    "$oid": "61fa8cb2defafd0648132f06"
+  },
+  "vehicleRegNumber": "СО0000МА",
+  "eventDate": {
+    "$date": "2022-03-15T22:00:00Z"
+  },
+  "driver": "Test driver",
+  "eventInfo": "dddddd",
+  "image": "http://localhost:3200/images/bmw.jpeg",
+  "createdAt": {
+    "$date": "2022-02-02T14:06:24.394Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T14:06:24.394Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61faab9eace73308fcc27b42"
+  },
+  "insurance": {
+    "$oid": "61f7b82e6807349b666c6bc8"
+  },
+  "vehicleRegNumber": "СО7777АВ",
+  "eventDate": {
+    "$date": "2022-02-17T22:00:00Z"
+  },
+  "driver": "dfdd",
+  "eventInfo": "dddd",
+  "image": "http://localhost:3200/images/doge.jpg",
+  "createdAt": {
+    "$date": "2022-02-02T16:04:46.107Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T16:04:46.107Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fab383ef6cf9d8758d4f9c"
+  },
+  "insurance": {
+    "$oid": "61fa8cb2defafd0648132f06"
+  },
+  "vehicleRegNumber": "СО0000МА",
+  "eventDate": {
+    "$date": "2023-01-31T22:00:00Z"
+  },
+  "driver": " cxxzzxzcx",
+  "eventInfo": "zczzczcxzxzzz",
+  "image": "http://localhost:3200/images/mustang.jpg",
+  "createdAt": {
+    "$date": "2022-02-02T16:38:27.145Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T16:38:27.145Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fab424ef6cf9d8758d4fb8"
+  },
+  "insurance": {
+    "$oid": "61f7ceb5c3387f1b37d4966a"
+  },
+  "vehicleRegNumber": "СС7777МА",
+  "eventDate": {
+    "$date": "2022-08-24T21:00:00Z"
+  },
+  "driver": "xcxx",
+  "eventInfo": "xcxcxcxcxc",
+  "image": "http://localhost:3200/images/mustang.jpg",
+  "createdAt": {
+    "$date": "2022-02-02T16:41:08.534Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T16:41:08.534Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fb8efa06423a9309faab20"
+  },
+  "insurance": {
+    "$oid": "61fb8e3e06423a9309faab08"
+  },
+  "vehicleRegNumber": "СМ9919АО",
+  "eventDate": {
+    "$date": "2023-02-01T22:00:00Z"
+  },
+  "driver": "Peter Petrov",
+  "eventInfo": "Event Info blablabla",
+  "image": "http://localhost:3200/images/lada.jpg",
+  "createdAt": {
+    "$date": "2022-02-03T08:14:50.200Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-03T08:14:50.200Z"
+  },
+  "__v": 0
+}]

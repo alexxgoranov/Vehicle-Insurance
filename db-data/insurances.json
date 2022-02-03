@@ -1,0 +1,181 @@
+[{
+  "_id": {
+    "$oid": "61f7b82e6807349b666c6bc8"
+  },
+  "vehicleRegNumber": "СО7777АВ",
+  "ownerName": "Testov Ivan",
+  "personalIdentifier": "6101057509",
+  "startDate": {
+    "$date": "2022-01-04T22:00:00Z"
+  },
+  "durationOfYears": 1,
+  "paymentsCount": 2,
+  "yearOfManufacture": 2003,
+  "duePrice": 40000,
+  "payments": [
+    {
+      "paymentNumber": 1,
+      "date": {
+        "$date": "2022-01-31T11:51:12.344Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61f7b82e6807349b666c6bc9"
+      }
+    },
+    {
+      "paymentNumber": 2,
+      "date": null,
+      "status": "unpaid",
+      "_id": {
+        "$oid": "61f7b82e6807349b666c6bca"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2022-01-31T10:21:34.729Z"
+  },
+  "updatedAt": {
+    "$date": "2022-01-31T11:51:12.346Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f7ceb5c3387f1b37d4966a"
+  },
+  "vehicleRegNumber": "СС7777МА",
+  "ownerName": "Test Testov",
+  "personalIdentifier": "6101057509",
+  "startDate": {
+    "$date": "2022-01-31T22:00:00Z"
+  },
+  "durationOfYears": 1,
+  "paymentsCount": 2,
+  "yearOfManufacture": 2003,
+  "duePrice": 22222,
+  "payments": [
+    {
+      "paymentNumber": 1,
+      "date": {
+        "$date": "2022-02-01T15:44:13.114Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61f7ceb5c3387f1b37d4966b"
+      }
+    },
+    {
+      "paymentNumber": 2,
+      "date": {
+        "$date": "2022-02-02T16:40:53.885Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61f7ceb5c3387f1b37d4966c"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2022-01-31T11:57:41.270Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T16:40:53.886Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fa8cb2defafd0648132f06"
+  },
+  "vehicleRegNumber": "СО0000МА",
+  "ownerName": "Peter Petrov",
+  "personalIdentifier": "6101057509",
+  "startDate": {
+    "$date": "2022-02-01T22:00:00Z"
+  },
+  "durationOfYears": 1,
+  "paymentsCount": 4,
+  "yearOfManufacture": 2011,
+  "duePrice": 600,
+  "payments": [
+    {
+      "paymentNumber": 1,
+      "date": {
+        "$date": "2022-02-02T14:01:02.913Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61fa8cb2defafd0648132f07"
+      }
+    },
+    {
+      "paymentNumber": 2,
+      "date": {
+        "$date": "2022-02-02T15:21:03.624Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61fa8cb2defafd0648132f08"
+      }
+    },
+    {
+      "paymentNumber": 3,
+      "date": {
+        "$date": "2022-02-02T15:21:04.268Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61fa8cb2defafd0648132f09"
+      }
+    },
+    {
+      "paymentNumber": 4,
+      "date": {
+        "$date": "2022-02-02T15:21:04.660Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61fa8cb2defafd0648132f0a"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2022-02-02T13:52:50.960Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-02T15:21:04.660Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fb8e3e06423a9309faab08"
+  },
+  "vehicleRegNumber": "СМ9919АО",
+  "ownerName": "Testov Owner",
+  "personalIdentifier": "6101057509",
+  "startDate": {
+    "$date": "2022-02-02T22:00:00Z"
+  },
+  "durationOfYears": 1,
+  "paymentsCount": 1,
+  "yearOfManufacture": 1997,
+  "duePrice": 250,
+  "payments": [
+    {
+      "paymentNumber": 1,
+      "date": {
+        "$date": "2022-02-03T08:14:17.703Z"
+      },
+      "status": "paid",
+      "_id": {
+        "$oid": "61fb8e3e06423a9309faab09"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2022-02-03T08:11:42.531Z"
+  },
+  "updatedAt": {
+    "$date": "2022-02-03T08:14:17.704Z"
+  },
+  "__v": 0
+}]
