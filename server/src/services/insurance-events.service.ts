@@ -18,7 +18,7 @@ export class InsuranceEventsService {
                     success: true,
                 }
             } else {
-                throw new Error('Expired insurance or unpaid fee');
+                throw new Error('Expired insurance or unpaid fee!');
             }
         }
         catch (e) {

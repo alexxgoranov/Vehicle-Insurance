@@ -1,9 +1,11 @@
-import { expect, assert, should } from "chai";
-
+import { expect, assert, should, use } from "chai";
+import chai_promised from "chai-as-promised";
 import { clearDatabase, closeDatabase, connect } from "./dbHandler";
 import { InsuranceService } from "./insurances.service";
 
 let insuranceService: InsuranceService; // TO DOO!!
+
+use(chai_promised);
 
 
 describe('insurances service', () => {
@@ -11,11 +13,11 @@ describe('insurances service', () => {
         await connect();
         insuranceService = new InsuranceService();
     });
-    
+
     afterEach(async () => {
         await clearDatabase();
     });
-    
+
     after(async () => {
         await closeDatabase();
     });
@@ -32,14 +34,8 @@ describe('insurances service', () => {
             vehicleRegNumber: "СС7777МА",
             yearOfManufacture: 2003
         }
-        //act
-        try {
-            await insuranceService.createInsurance(newInsurance);
-
-        } catch (err: any) {
-            //assert
-            expect(err.message).to.be.equal('Invalid personal-identifier!');
-        }
+        // act and assert
+        await expect(insuranceService.createInsurance(newInsurance)).to.be.rejectedWith('Invalid personal-identifier!');
     });
 
     it("should throw error if vehicle registration number is invalid", async () => {
@@ -54,14 +50,8 @@ describe('insurances service', () => {
             vehicleRegNumber: "СС7774537МА",
             yearOfManufacture: 2003
         }
-
-        //act
-        try {
-            await insuranceService.createInsurance(newInsurance);
-        } catch (err: any) {
-            //assert
-            expect(err.message).to.be.equal('Invalid vehicle-registration number!');
-        }
+        // act and assert
+        await expect(insuranceService.createInsurance(newInsurance)).to.be.rejectedWith('Invalid vehicle-registration number!');
     });
 
     it("should throw error if vehicle registration number already exist", async () => {
@@ -86,13 +76,24 @@ describe('insurances service', () => {
             vehicleRegNumber: "СО6666МА",
             yearOfManufacture: 2007
         }
-        //act
-        try {
-            await insuranceService.createInsurance(newInsuranceFirst);
-            await insuranceService.createInsurance(newInsuranceSecond);
-        } catch (err: any) {
-            //assert
-            expect(err.message).to.be.equal('Vehicle-registration number already exist!');
+
+        // act and assert
+        await expect(insuranceService.createInsurance(newInsuranceFirst)).to.be.fulfilled;
+        await expect(insuranceService.createInsurance(newInsuranceSecond)).to.be.rejectedWith('Vehicle-registration number already exist!');
+    });
+
+    it("should create new insurance", async () => {
+        let newInsurance = {
+            duePrice: 3464,
+            insurancePrice: 20,
+            ownerName: "Test Testov",
+            paymentsCount: 4,
+            personalIdentifier: "6101057509",
+            startDate: "2022-01-31T22:00:00.000Z",
+            vehicleRegNumber: "СС7772МА",
+            yearOfManufacture: 2003
         }
+        // act and assert
+        await expect(insuranceService.createInsurance(newInsurance)).to.be.fulfilled;
     });
 });
