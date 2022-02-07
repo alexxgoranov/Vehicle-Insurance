@@ -3,15 +3,15 @@ import { CustomHttpResponse } from '../models/custom-response.model';
 import { InsuranceEvent } from '../db_models/insurance-event.model';
 import { ServiceResponse } from '../models/service-response.model';
 // import { InsuranceEventsService } from '../services/insurance-events.service';
-import app from '../app';
+// import app from '../app';
 import fs from 'fs';
 import { InsuranceEventsService } from '../services/insurance-events.service';
 
 
 export class InsuranceEventsController {
-    private insuranceEvenstService: InsuranceEventsService;
+    private insuranceEventsService: InsuranceEventsService;
     constructor(insuranceEventsService: InsuranceEventsService) {
-        this.insuranceEvenstService = insuranceEventsService;
+        this.insuranceEventsService = insuranceEventsService;
      }
 
     async createInsuranceEventHandler(req: any, res: Response) {
@@ -19,7 +19,7 @@ export class InsuranceEventsController {
         const body = req.body;
         try {
             const payload = { ...body, image: 'http://localhost:3200/images/' + req.file.filename }
-            const newInsuranceEvent: ServiceResponse<InsuranceEvent> = await app.insuranceEventsService.createInsuranceEvent(payload);
+            const newInsuranceEvent: ServiceResponse<InsuranceEvent> = await this.insuranceEventsService.createInsuranceEvent(payload);
             if (newInsuranceEvent.success) {
                 return res.status(200).send(newInsuranceEvent.dbResult);
             }
@@ -37,7 +37,7 @@ export class InsuranceEventsController {
 
     async getAllInsuranceEventsHandler(req: Request, res: Response) {
         try {
-            const allInsuranceEvents = await app.insuranceEventsService.getAllInsuranceEvents();
+            const allInsuranceEvents = await this.insuranceEventsService.getAllInsuranceEvents();
             return res.status(200).send(allInsuranceEvents.dbResult);
         }
         catch (e: any) {
