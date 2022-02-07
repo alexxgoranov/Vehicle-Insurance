@@ -4,19 +4,20 @@ import { ServiceResponse } from '../models/service-response.model';
 import { VehicleRegistrationNumber } from '../models/vehicle-registration.model';
 import { CustomHttpResponse } from '../models/custom-response.model';
 import { InsuranceService } from '../services/insurances.service';
-import app from '../app';
+// import app from '../app';
 
 
 export class InsurancesController {
 
-    insuranceService: InsuranceService = new InsuranceService();
-    constructor() { // TO do testing with interfaces
+    insuranceService: InsuranceService;
+    constructor(insuranceService: InsuranceService) { // TO do testing with interfaces
+        this.insuranceService = insuranceService;
     }
 
     async createInsuranceHandler(req: Request, res: Response) {
         const body = req.body;
         try {
-            const newInsurance: ServiceResponse<Insurance> = await app.insuranceService.createInsurance(body);
+            const newInsurance: ServiceResponse<Insurance> = await this.insuranceService.createInsurance(body);
             return res.status(200).send(newInsurance.dbResult);
         }
         catch (e) {
@@ -30,7 +31,7 @@ export class InsurancesController {
 
     async getAllInsurancesHandler(req: Request, res: Response) {
         try {
-            const insurances: ServiceResponse<Array<Insurance>> = await app.insuranceService.getAllInsurances();
+            const insurances: ServiceResponse<Array<Insurance>> = await this.insuranceService.getAllInsurances();
             return res.status(200).send(insurances.dbResult);
         }
         catch (e) {
@@ -44,7 +45,7 @@ export class InsurancesController {
 
     async getAllInsuredCarNumbersHandler(req: Request, res: Response) {
         try {
-            const vehicleNumbers: ServiceResponse<Array<VehicleRegistrationNumber>> = await app.insuranceService.getAllVehicleRegNumbers();
+            const vehicleNumbers: ServiceResponse<Array<VehicleRegistrationNumber>> = await this.insuranceService.getAllVehicleRegNumbers();
             return res.status(200).send(vehicleNumbers.dbResult);
         }
         catch (e) {
@@ -61,7 +62,7 @@ export class InsurancesController {
         const insuranceId = req.body.insuranceId;
         const paymentNumber = req.body.paymentNumber;
         try {
-            const payedInsurance: ServiceResponse<null> = await app.insuranceService.payInsuranceFee({ _id: insuranceId, "payments.paymentNumber": paymentNumber },
+            const payedInsurance: ServiceResponse<null> = await this.insuranceService.payInsuranceFee({ _id: insuranceId, "payments.paymentNumber": paymentNumber },
                 {
                     $set: {
                         "payments.$.status": "paid",

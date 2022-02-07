@@ -5,11 +5,14 @@ import { ServiceResponse } from '../models/service-response.model';
 // import { InsuranceEventsService } from '../services/insurance-events.service';
 import app from '../app';
 import fs from 'fs';
+import { InsuranceEventsService } from '../services/insurance-events.service';
 
 
 export class InsuranceEventsController {
-    // private insuranceEvenstService: InsuranceEventsService = new InsuranceEventsService();
-    constructor() { }
+    private insuranceEvenstService: InsuranceEventsService;
+    constructor(insuranceEventsService: InsuranceEventsService) {
+        this.insuranceEvenstService = insuranceEventsService;
+     }
 
     async createInsuranceEventHandler(req: any, res: Response) {
 

@@ -4,9 +4,10 @@ import storage from "../utils/storage";
 import express, { Request, Response } from 'express';
 import multer from "multer";
 import { CustomHttpResponse } from "../models/custom-response.model";
+import { InsuranceEventsService } from "../services/insurance-events.service";
 
 const router = Router();
-const insuranceEvenstController = new InsuranceEventsController();
+const insuranceEvenstController = new InsuranceEventsController(new InsuranceEventsService());
 
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     storage(req, res, (err: any) => {
@@ -20,8 +21,8 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
             return next();
         }
     })
-}, insuranceEvenstController.createInsuranceEventHandler);
-router.get("/", insuranceEvenstController.getAllInsuranceEventsHandler);
+}, insuranceEvenstController.createInsuranceEventHandler.bind(insuranceEvenstController));
+router.get("/", insuranceEvenstController.getAllInsuranceEventsHandler.bind(insuranceEvenstController));
 
 
 export default router;
